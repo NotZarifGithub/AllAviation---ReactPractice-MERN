@@ -13,12 +13,9 @@ const Navbar = () => {
           to={'/'}
           className="flex items-center text-xl md:text-2xl lg:text-3xl lg:gap-1"
         >
-          {/* text */}
           <h1 className=" font-semibold tracking-tighter">
             AllAviation
           </h1>
-
-          {/* logo */}
           <div className="text-3xl md:text-4xl">
             <MdConnectingAirports />
           </div>
@@ -34,7 +31,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link to={'/'}>
-              Get Started
+              Explore
             </Link>
           </li>
         </ul>
@@ -42,8 +39,6 @@ const Navbar = () => {
         {/* hamburger */}
 
         <div className="lg:hidden">
-
-          {/* logo */}
           <div className="text-2xl">
             <RxHamburgerMenu />
           </div>
