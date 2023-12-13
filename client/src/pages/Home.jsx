@@ -23,7 +23,7 @@ const Home = () => {
           </div>
           
           <div className="flex flex-col gap-4 md:grid md:grid-cols-2 ">
-            <div className="flex gap-1 items-start">
+            <div className="flex gap-3 items-start">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
@@ -31,7 +31,7 @@ const Home = () => {
                 Dive into detailed resources on aircraft models, airline operations, and airport facilities.
               </p>
             </div>
-            <div className="flex gap-1 items-start">
+            <div className="flex gap-3 items-start">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
@@ -39,7 +39,7 @@ const Home = () => {
                 Join a vibrant community of aviation enthusiasts, pilots, and industry experts.
               </p>
             </div>
-            <div className="flex gap-1 items-start">
+            <div className="flex gap-3 items-start">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
@@ -47,7 +47,7 @@ const Home = () => {
                 Get real-time updates on the latest aviation developments.
               </p>
             </div>
-            <div className="flex gap-1 items-start">
+            <div className="flex gap-3 items-start">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
@@ -55,7 +55,7 @@ const Home = () => {
                 Explore tailored content based on your interests, whether its aircraft engineering or airline management.
               </p>
             </div>
-            <div className="flex gap-1 items-start">
+            <div className="flex gap-3 items-start">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
@@ -63,7 +63,7 @@ const Home = () => {
                 Our platform streamlines your aviation journey with automation and insightful reporting tools.
               </p>
             </div>
-            <div className="flex gap-1 items-start">
+            <div className="flex gap-3 items-start">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
@@ -75,7 +75,7 @@ const Home = () => {
 
           <div className="flex justify-center md:justify-start py-[20px]">
             <button className="border-2 rounded-lg border-black text-lg w-[200px] py-[5px]">
-              <Link to={'/'}>
+              <Link to={'/explore'}>
                 Explore
               </Link>
             </button>

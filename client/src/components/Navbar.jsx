@@ -30,7 +30,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to={'/'}>
+            <Link to={'/explore'}>
               Explore
             </Link>
           </li>
