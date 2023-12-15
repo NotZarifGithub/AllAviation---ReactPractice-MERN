@@ -1,126 +1,189 @@
 import axios from "axios"
 import { useState } from "react"
+import TitleCard from "../components/TitleCard"
+import FormCard from "../components/FormCard"
 
 const Airline = () => {
-  const [formData, setFormData] = useState({})
-  const [airlineData, setAirlineData] = useState({})
+  const [formDataAirlineSearch, setFormDataAirlineSearch] = useState({})
+  const [formDataAirlineAircraft, setFormDataAirlineAircraft] = useState({})
+  const [airlineSearchData, setAirlineSearchData] = useState({})
+  const [airlineAircraftData, setAirlineAircraftData] = useState({})
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
+  // handle change for airline search
+  const handleChangeAirlineSearch = (e) => {
+    setFormDataAirlineSearch({
+      ...formDataAirlineSearch,
       [e.target.id]: e.target.value
       
     })
-    console.log(formData)
+    console.log(formDataAirlineSearch)
   }
 
-  const handleSubmit = async (e) => {
+  // handle submit for airline search
+  const handleSubmitAirlineSearch = async (e) => {
     e.preventDefault()
 
     try {
-      const airlineData = await axios.get('/api/airline/get-airline', { 
+      const airlineSearchData = await axios.get('/api/airline/airline-search', { 
       params: {
-        country: formData.airlineCountry
+        icao: formDataAirlineSearch.icao
       }
     })
-      setAirlineData(airlineData.data)
+    setAirlineSearchData(airlineSearchData.data)
 
     } catch (error) {
       console.error(error)
     }
-
   }
 
-  console.log(airlineData)
+  // handle change for airline search
+  const handleChangeAirlineAircraft = (e) => {
+    setFormDataAirlineAircraft({
+      ...formDataAirlineAircraft,
+      [e.target.id]: e.target.value
+    })
 
+    console.log(formDataAirlineAircraft)
+  }
+
+  // handle submit for airline search
+  const handleSubmitAirlineAircraft = async (e) => {
+    e.preventDefault()
+
+    try {
+      const airlineAircraftData = await axios.get("/api/airline/airline-aircraft", {
+        params: {
+          ident: formDataAirlineAircraft.ident
+        }
+      })
+      setAirlineAircraftData(airlineAircraftData.data)
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  console.log(airlineAircraftData)
   return (
-    <main>
-      <section className="flex px-[20px] max-w-[1200px] mx-auto gap-5 lg:flex-row flex-col py-[20px] ">
+    <main className="flex flex-col gap-10">
 
-        <section className="max-w-[500px] flex-1 ">
+      {/* Airline Search */}
+      
+      <section className="flex px-[20px] max-w-[1200px] mx-auto py-[20px] flex-col gap-8 w-full">
+
+        {/* title and description */}
+
+        <TitleCard 
+          title={"Airline Search"}
+          description={"Provides a list of airlines associated with a specified airline ICAO code."}
+        />
+
+        <div className="flex flex-col md:flex-row gap-5">
 
           {/* form */}
-          <div className="flex  border rounded-md  items-start p-[40px] gap-5 shadow-md justify-center flex-col md:px-[50px] w-full ">
-            <h1 className="font-semibold text-lg md:text-xl md:py-[10px] md:tracking-[5px]">
-              Enter airline details
-            </h1>
-            <form 
-              action=""
-              className="flex flex-col gap-6 w-full"
-              onSubmit={handleSubmit}
-            >
-
-              {/* airline name input */}
-              <div className="flex flex-col gap-2">
-                <label 
-                  htmlFor="airlineCountry"
-                  className=" text-sm font-medium"
-                >
-                  Country
-                </label>
-                <input
-                type="text"
-                id="airlineCountry" 
-                name="airlineCountry"
-                className="border rounded-lg py-[5px] px-[15px] w-full text-sm"
-                onChange={handleChange}
-                />
-              </div>
-              
-              <div className="py-[10px] md:py-[20px]">
-                <button
-                  type="submit"
-                  className="border rounded-full py-[5px] px-[15px] w-full"
-                >
-                  Search
-                </button>
-              </div>
-            </form>
+        
+          <div className="flex-1">
+            <FormCard
+              mainTitle={"Enter airline details"}
+              title={"Airline ICAO Code"}
+              titleForm={"icao"}
+              handleChange={handleChangeAirlineSearch}
+              handleSubmit={handleSubmitAirlineSearch}
+            />
           </div>
-        </section>
 
-        {/* output */}
-        <section className="flex-1 flex flex-col gap-4 py-[20px]">
-          <h1 className="font-medium text-lg">
-            Details
-          </h1>
+          {/* output */}
 
-          <div className="grid md:grid-cols-2">
+          <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
+            <h1 className="font-medium text-lg">Details</h1>
 
-            {airlineData.length > 0 && (
-              airlineData.map((item, index) => (
-                <div key={index} className="flex flex-col text-sm gap-3 fo">
-                  <div>
-                    Name = <span className="font-medium text-base border-b-2 border-black">{item.name}</span>
+            {airlineSearchData.length > 0 && (
+              <div className="grid md:grid-cols-2 text-sm gap-2">
+                {airlineSearchData.map((item, index) => (
+                  <div key={index}>
+                    <p>
+                      <span className="font-medium text-base">
+                        Identification: <span className="border-b-2 border-black">{item.ident}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        ICAO Code: <span className="border-b-2 border-black">{item.icao}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        IATA Code: <span className="border-b-2 border-black">{item.iata}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Airline Name: <span className="border-b-2 border-black">{item.name}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Country: <span className="border-b-2 border-black">{item.country}</span>
+                      </span>
+                    </p>
                   </div>
-
-                  <div>
-                    IATA = <span className="font-medium text-base border-b-2 border-black">{item.iata}</span>
-                  </div>
-
-                  <div>
-                    ICAO = <span className="font-medium text-base border-b-2 border-black">{item.icao}</span>
-                  </div>
-
-                  {Object.entries(item.fleet).slice(0, -1).map(([aircraftType, count], index) => (
-                    <div key={index} className="">
-                      Fleet {index + 1} = <span className="font-medium text-base border-b-2 border-black">{aircraftType} ({count})</span>
-                    </div>
-                  ))}
-
-                  {/* Display total fleet count */}
-                  <div>
-                    Total Fleet = <span className="font-medium text-base border-b-2 border-black">{item.fleet.total}</span>
-                  </div>
-                </div>
-              ))
+                ))}
+              </div>
             )}
+
+          </section>
+        </div>
+      </section>
+
+      {/* Airline Aircrafts */}
+      
+      <section className="flex px-[20px] max-w-[1200px] mx-auto py-[20px] flex-col gap-8 w-full">
+
+        {/* title and description */}
+
+        <TitleCard 
+          title={"Airline Aircrafts"}
+          description={"Provide a list of 15 aircraft registration numbers for a particular airline."}
+        />
+
+        <div className="flex flex-col md:flex-row gap-5">
+
+          {/* form */}
+
+          <div className="flex-1">
+            <FormCard
+              mainTitle={"Enter airline details"}
+              title={"Airline Identification"}
+              titleForm={"ident"}
+              handleChange={handleChangeAirlineAircraft}
+              handleSubmit={handleSubmitAirlineAircraft}
+            />
           </div>
 
-        </section>
+          {/* output */}
+
+          <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
+            <h1 className="font-medium text-lg">Details</h1>
+
+            {airlineAircraftData.length > 0 && (
+              <div className="grid lg:grid-cols-3 text-sm gap-2 md:grid-cols-2">
+                {airlineAircraftData
+                .filter((item, index) => index < 15)
+                .map((item, index) => (
+                  <div key={index}>
+                    Aircraft {index + 1} = <span className="border-b-2 border-black">{item}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+          </section>
+        </div>
       </section>
+
     </main>
   )
 }
+
 
 export default Airline

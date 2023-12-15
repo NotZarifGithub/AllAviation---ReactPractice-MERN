@@ -1,148 +1,163 @@
-import axios from "axios"
-import { useState } from "react"
+import axios from "axios";
+import { useState } from "react";
+import FormCard from "../components/FormCard"
+import TitleCard from "../components/TitleCard";
 
 const Aircraft = () => {
-  const [formData, setFormData] = useState({})
-  const [aircraftTypeData, setAircraftTypeData] = useState({})
+  const [formDataAircraftSearch, setFormDataAircraftSearch] = useState({});
+  const [formDataAircraftInfo, setFormDataAircraftInfo] = useState({})
+  const [aircraftSearchData, setAircraftSearchData] = useState({});
+  const [aircraftInfoData, setAircraftInfoData] = useState({})
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-      
+  // handle change for aircraft search
+  const handleChangeAircraftSearch = (e) => {
+    setFormDataAircraftSearch({
+      ...formDataAircraftSearch,
+      [e.target.id]: e.target.value,
+    });
+
+    console.log(formDataAircraftSearch)
+  };
+
+  // handle submit for aircraft search
+  const handleSubmitAircraftSearch = async (e) => {
+    e.preventDefault();
+
+    try {
+      const aircraftSearchData = await axios.get('/api/aircraft/aircraft-search', {
+        params: {
+          model: formDataAircraftSearch.model,
+        },
+      });
+      setAircraftSearchData(aircraftSearchData.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+ // handle change for aircraft info
+  const handlechangeAircraftInfo = (e) => {
+    setFormDataAircraftInfo({
+      ...formDataAircraftInfo,
+      [e.target.id]: e.target.value,
     })
+    console.log(formDataAircraftInfo)
   }
-
-  const handleSubmit = async (e) => {
+  
+  // handle submit for aircraft info
+  const handleSubmitAircraftInfo = async (e) => {
     e.preventDefault()
 
     try {
-      const aircraftTypeData = await axios.get('/api/aircraft/get-aircraft', { 
-      params: {
-        manufacturer: formData.aircraftManufacturer, 
-        model: formData.aircraftModel
-      }
-    })
-      setAircraftTypeData(aircraftTypeData.data)
+      const aircraftInfoData = await axios.get("/api/aircraft/aircraft-info", {
+        params: {
+          registration: formDataAircraftInfo.registration
+        }
+      })
+      setAircraftInfoData(aircraftInfoData.data)
 
     } catch (error) {
       console.error(error)
     }
-
   }
 
-  console.log(aircraftTypeData)
-
   return (
-    <main>
-      <section className="flex px-[20px] max-w-[1200px] mx-auto gap-5 lg:flex-row flex-col py-[20px] ">
+    <main className="flex flex-col gap-10">
 
-        <section className="max-w-[500px] flex-1 ">
+      {/* Aircraft Search */}
+      
+      <section className="flex px-[20px] max-w-[1200px] mx-auto py-[20px] flex-col gap-8 w-full">
+
+        {/* title and description */}
+
+        <TitleCard 
+          title={"Aircraft Search"}
+          description={"Provide a list of 10 aircraft registration numbers for a particular model."}
+        />
+
+        <div className="flex flex-col md:flex-row gap-5">
 
           {/* form */}
-          <div className="flex  border rounded-md  items-start p-[40px] gap-5 shadow-md justify-center flex-col md:px-[50px] w-full ">
-            <h1 className="font-semibold text-lg md:text-xl md:py-[10px] md:tracking-[5px]">
-              Enter aircraft details
-            </h1>
-            <form 
-              action=""
-              className="flex flex-col gap-6 w-full"
-              onSubmit={handleSubmit}
-            >
-
-              {/* manufacturer input */}
-              <div className="flex flex-col gap-2">
-                <label 
-                  htmlFor="aircraftManufacturer"
-                  className=" text-sm font-medium"
-                >
-                  Aircraft manufacturer
-                </label>
-                <input
-                type="text"
-                id="aircraftManufacturer" 
-                name="aircraftManufacturer"
-                className="border rounded-lg py-[5px] px-[15px] w-full text-sm"
-                onChange={handleChange}
-                />
-              </div>
-
-              {/* model input */}
-              <div className="flex flex-col gap-2">
-                <label 
-                  htmlFor="aircraftModel"
-                  className=" text-sm font-medium"
-                >
-                  Aircraft model
-                </label>
-                <input
-                type="text"
-                id="aircraftModel" 
-                name="aircraftModel"
-                className="border rounded-lg py-[5px] px-[15px] w-full text-sm"
-                onChange={handleChange}
-                />
-              </div>
-              
-              <div className="py-[10px] md:py-[20px]">
-                <button
-                  type="submit"
-                  className="border rounded-full py-[5px] px-[15px] w-full"
-                >
-                  Search
-                </button>
-              </div>
-            </form>
+        
+          <div className="flex-1">
+            <FormCard
+              mainTitle={"Enter aircraft details"}
+              title={"Aircraft Model"}
+              titleForm={"model"}
+              handleChange={handleChangeAircraftSearch}
+              handleSubmit={handleSubmitAircraftSearch}
+            />
           </div>
-        </section>
 
-        {/* output */}
-        <section className="flex-1 flex flex-col gap-4 py-[20px]">
-          <h1 className="font-medium text-lg">
-            Details
-          </h1>
+          {/* output */}
 
-          {aircraftTypeData.length > 0 && (
-            <div className="flex flex-col text-sm gap-3 fo">
-              <div>
-                Manufacturer = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].manufacturer}</span>
-              </div>
-              
-              <div>
-                Model = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].model}</span>
-              </div>
+          <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
+            <h1 className="font-medium text-lg">Details</h1>
 
-              <div>
-                Engine Type = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].engine_type}</span>
+            {aircraftSearchData.length > 0 && (
+              <div className="grid md:grid-cols-2 text-sm gap-2">
+                {aircraftSearchData.map((data, index) => (
+                  <div key={index}>
+                    Aircraft {index + 1} ={" "}
+                    <span className="font-medium text-base border-b-2 border-black">
+                      {data}
+                    </span>
+                  </div>
+                ))}
               </div>
-
-              <div>
-                Max Speed = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].max_speed_knots} Knots</span>
-              </div>
-
-              <div>
-                Ceiling = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].ceiling_ft} ft </span>
-              </div>
-
-              <div>
-                Gross Weight = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].gross_weight_lbs} lbs</span>
-              </div>
-
-              <div>
-                Length = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].length_ft} ft </span>
-              </div>
-
-              <div>
-                Wingspan = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].wing_span_ft} ft </span>
-              </div>
-
-              <div>
-                Range Nautical Miles = <span className="font-medium text-base border-b-2 border-black">{aircraftTypeData[0].range_nautical_miles} Nm</span>
-              </div>
-          </div>
-          )}
-        </section>
+            )}
+          </section>
+        </div>
       </section>
+
+      {/* Aircraft Info */}
+      
+      <section className="flex px-[20px] max-w-[1200px] mx-auto py-[20px] flex-col gap-8 w-full">
+
+        {/* title and description */}
+
+        <TitleCard 
+          title={"Aircraft Info"}
+          description={"Provides in-depth details about an aircraft identified by its registration."}
+        />
+
+        <div className="flex flex-col md:flex-row gap-5">
+
+          {/* form */}
+
+          <div className="flex-1">
+            <FormCard
+              title={"Aircraft Registration"}
+              titleForm={"registration"}
+              handleChange={handlechangeAircraftInfo}
+              handleSubmit={handleSubmitAircraftInfo}
+            />
+          </div>
+
+          {/* output */}
+
+          <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
+            <h1 className="font-medium text-lg">Details</h1>
+
+            {aircraftInfoData.length > 0 && (
+              <div className="grid md:grid-cols-2 text-sm gap-2">
+                {aircraftInfoData.map((data, index) => (
+                  <div key={index}>
+                    hello
+                    <div key={index}>
+                    Aircraft {index + 1} ={" "}
+                    <span className="font-medium text-base border-b-2 border-black">
+                      {data}
+                    </span>
+                  </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
+      </section>
+
     </main>
   )
 }
