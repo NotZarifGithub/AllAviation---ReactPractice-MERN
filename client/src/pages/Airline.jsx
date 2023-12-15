@@ -7,9 +7,11 @@ const Airline = () => {
   const [formDataAirlineSearch, setFormDataAirlineSearch] = useState({})
   const [formDataAirlineAircraft, setFormDataAirlineAircraft] = useState({})
   const [formDataAircraftStatistics, setFormDataAircraftStatistics] = useState({})
+  const [formDataAirlineInfo, setFormDataAirlineInfo] = useState({})
   const [airlineSearchData, setAirlineSearchData] = useState({})
   const [airlineAircraftData, setAirlineAircraftData] = useState({})
   const [airlineStatisticsData, setAirlineStatisticsData] = useState({})
+  const [airlineInfoData, setAirlineInfoData] = useState({})
 
 
   // handle change for airline search
@@ -92,6 +94,33 @@ const Airline = () => {
     }
   }
 
+    // handle change for airline info
+    const handleChangeAirlineInfo = (e) => {
+      setFormDataAirlineInfo({
+        ...formDataAirlineInfo,
+        [e.target.id]: e.target.value
+      })
+  
+      console.log(formDataAirlineInfo)
+    }
+  
+    // handle submit for airline info
+    const handleSubmitAirlineInfo = async (e) => {
+      e.preventDefault()
+  
+      try {
+        const airlineInfoData = await axios.get("/api/airline/airline-info", {
+          params: {
+            icao: formDataAirlineInfo.icao
+          }
+        })
+        setAirlineInfoData(airlineInfoData.data)
+  
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
   console.log(airlineStatisticsData)
 
   return (
@@ -127,9 +156,9 @@ const Airline = () => {
           <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
             <h1 className="font-medium text-lg">Details</h1>
 
-            {airlineStatisticsData.length > 0 && (
+            {airlineSearchData.length > 0 && (
               <div className="grid md:grid-cols-2 text-sm gap-2">
-                {airlineStatisticsData.map((item, index) => (
+                {airlineSearchData.map((item, index) => (
                   <div key={index}>
                     <p>
                       <span className="font-medium text-base">
@@ -138,38 +167,29 @@ const Airline = () => {
                     </p>
                     <p>
                       <span className="font-medium text-base">
-                        Total Flight in 1 Month: <span className="border-b-2 border-black">{item.icao}</span>
+                        ICAO Code: <span className="border-b-2 border-black">{item.icao}</span>
                       </span>
                     </p>
                     <p>
                       <span className="font-medium text-base">
-                        Total Flight in 1 Week: <span className="border-b-2 border-black">{item.iata}</span>
+                        IATA Code: <span className="border-b-2 border-black">{item.iata}</span>
                       </span>
                     </p>
                     <p>
                       <span className="font-medium text-base">
-                        Oldest Aircraft Age: <span className="border-b-2 border-black">{item.name}</span>
+                        Airline Name: <span className="border-b-2 border-black">{item.name}</span>
                       </span>
                     </p>
                     <p>
                       <span className="font-medium text-base">
-                        Newest Aircraft Age: <span className="border-b-2 border-black">{item.country}</span>
-                      </span>
-                    </p>
-                    <p>
-                      <span className="font-medium text-base">
-                        Top Airports in 1 Month: <span className="border-b-2 border-black">{item.name}</span>
-                      </span>
-                    </p>
-                    <p>
-                      <span className="font-medium text-base">
-                        Top Countries in 1 Month: <span className="border-b-2 border-black">{item.country}</span>
+                        Country: <span className="border-b-2 border-black">{item.country}</span>
                       </span>
                     </p>
                   </div>
                 ))}
               </div>
             )}
+
 
           </section>
         </div>
@@ -297,7 +317,100 @@ const Airline = () => {
               </div>
             )}
           </section>
+        </div>
+      </section>
 
+      {/* Airline Info */}
+            
+      <section className="flex px-[20px] max-w-[1200px] mx-auto py-[20px] flex-col gap-8 w-full">
+
+        {/* title and description */}
+
+        <TitleCard 
+          title={"Airline Info"}
+          description={"Provides detailed information about airlines identified by their ICAO codes."}
+        />
+
+        <div className="flex flex-col md:flex-row gap-5">
+
+          {/* form */}
+
+          <div className="flex-1">
+            <FormCard
+              mainTitle={"Enter airline details"}
+              title={"Airline ICAO Code"}
+              titleForm={"icao"}
+              handleChange={handleChangeAirlineInfo}
+              handleSubmit={handleSubmitAirlineInfo}
+            />
+          </div>
+
+          {/* output */}
+
+          <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
+            <h1 className="font-medium text-lg">
+              Details
+            </h1>
+
+            {airlineInfoData.length > 0 && (
+              <div className="grid md:grid-cols-2 text-sm gap-2">
+                {airlineInfoData.map((item, index) => (
+                  <div key={index}>
+                    <p>
+                      <span className="font-medium text-base">
+                        Identification: <span className="border-b-2 border-black">{item.ident}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        ICAO Code: <span className="border-b-2 border-black">{item.icao}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        IATA Code: <span className="border-b-2 border-black">{item.iata}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Airline Name: <span className="border-b-2 border-black">{item.name}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Callsign: <span className="border-b-2 border-black">{item.callsign}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Country: <span className="border-b-2 border-black">{item.country}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Founding Date: <span className="border-b-2 border-black">{item.founding_date}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Start Date: <span className="border-b-2 border-black">{item.start_date}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Website: <span className="border-b-2 border-black">{item.website}</span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-base">
+                        Alliance: <span className="border-b-2 border-black">{item.alliance}</span>
+                      </span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
         </div>
       </section>
     </main>

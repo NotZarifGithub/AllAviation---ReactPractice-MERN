@@ -76,9 +76,30 @@ const airlineStatistics = async (req, res, next) => {
   }
 }
 
+// rapid api 
+const airlineInfo = async (req, res, next) => {
+  try {
+    const {icao} = req.query
+    const response = await axios.get("https://flightera-flight-data.p.rapidapi.com/airline/info", {
+      params: {
+        icao: icao
+      },
+      headers: {
+        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY,
+        'X-RapidAPI-Host': 'flightera-flight-data.p.rapidapi.com'
+      }
+    })
+    res.status(200).json(response.data)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   getAirline,
   airlineSearch,
   airlineAircraft,
-  airlineStatistics
+  airlineStatistics,
+  airlineInfo
 }
