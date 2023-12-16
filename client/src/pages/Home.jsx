@@ -84,7 +84,7 @@ const Home = () => {
 
         {/* hero image */}
         <section className="lg:flex-1">
-          hello
+          Hello
         </section>
       </section>
     </main>

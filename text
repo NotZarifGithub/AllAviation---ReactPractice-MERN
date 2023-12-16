@@ -1,0 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const helloWorld = (hello) => {
+  console.log(hello)
+}
