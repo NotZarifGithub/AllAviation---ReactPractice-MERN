@@ -6,5 +6,6 @@ router.get('/get-airport', airportController.getAirport)
 router.get('/airport-search', airportController.airportSearch)
 router.get('/airport-info', airportController.airportInfo)
 router.get('/airport-metar', airportController.airportMetar)
+router.get('/airport-statistics', airportController.airportStatistics)
 
 module.exports = router

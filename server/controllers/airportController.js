@@ -73,9 +73,30 @@ const airportMetar = async(req, res, next) => {
   }
 }
 
+const airportStatistics = async (req, res, next) => {
+  try {
+    const {icao} = req.query
+    const response = await axios.get("https://flightera-flight-data.p.rapidapi.com/airport/statistics", {
+      params:{
+        icao: "wmkk"
+      },
+      headers: {
+        'X-RapidAPI-Key': 'e2deeac767mshfbc47f57dfcdfa3p151255jsn532d014773b0',
+        'X-RapidAPI-Host': 'flightera-flight-data.p.rapidapi.com'
+      }
+    })
+    res.status(200).json(response.data)
+
+  } catch (error) {
+    next(error)
+    
+  }
+}
+
 module.exports = {
   getAirport,
   airportSearch,
   airportInfo,
   airportMetar,
+  airportStatistics,
 }

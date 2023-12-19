@@ -7,9 +7,11 @@ const Airport = () => {
   const [airportSearchFormData, setAirportSearchFormData] = useState({});
   const [airportMetarFormData, setAirportMetarFormData] = useState({});
   const [airportInfoFormData, setAirportInfoFormData] = useState({});
+  const [airportStatisticsFormData, setAirportStatisticsFormData] = useState({})
   const [airportMetarData, setAirportMetarData] = useState({});
   const [airportSearchData, setAirportSearchData] = useState([]);
   const [airportInfoData, setAirportInfoData] = useState([]);
+  const [airportStatisticsData, setAirportStatisticsData] = useState({})
 
   const handleChangeAirportSearch = (e) => {
     setAirportSearchFormData({
@@ -77,6 +79,28 @@ const Airport = () => {
       console.error(error);
     }
   };
+
+  const handleChangeAirportStatistics = (e) => {
+    setAirportStatisticsFormData({
+      ...airportStatisticsFormData,
+      [e.target.id]: e.target.value,
+    });
+    console.log(airportStatisticsFormData);
+  };
+
+  const handleSubmitAirportStatistics = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get("/api/airport/airport-statistics", {
+        params: {
+          icao: airportStatisticsFormData.icao,
+        },
+      });
+      setAirportStatisticsData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };  
 
   console.log(airportMetarData);
 
@@ -397,6 +421,140 @@ const Airport = () => {
               </div>
             )}
           </section>
+        </div>
+      </section>
+
+      {/* Airport Statistics */}
+      <section className="flex px-[20px] max-w-[1200px] mx-auto py-[20px] flex-col gap-8 w-full">
+        
+        {/* title and description */}
+        <TitleCard
+          title={"Airport Statistics"}
+          description={
+            "Provide detailed airport statistics for airports identified by their ICAO code."
+          }
+        />
+
+        <div className="flex flex-col gap-5 md:flex-row">
+          {/* form */}
+          <div className="flex-1">
+            <FormCard
+              mainTitle={"Enter airport details"}
+              title={"Airport ICAO Code"}
+              titleForm={"icao"}
+              handleChange={handleChangeAirportStatistics}
+              handleSubmit={handleSubmitAirportStatistics}
+            />
+          </div>
+
+          {/* output */}
+          <section className="flex flex-col flex-1 gap-4">
+            <h1 className="text-lg font-medium">Airport Details</h1>
+            {Array.isArray(airportStatisticsData) && airportStatisticsData.length > 0
+              ? airportStatisticsData.map((airportData, index) => (
+                  <div key={index} className="p-4 border rounded-md shadow-md">
+                    <h1 className="text-lg font-medium">Airport Statistics</h1>
+                    <p>
+                      <span className="text-base font-medium">
+                        ICAO Code:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.ident}
+                        </span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-base font-medium">
+                        Departures:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.departures}
+                        </span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-base font-medium">
+                        Arrivals:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.arrivals}
+                        </span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-base font-medium">
+                        Avg Departure Distance:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.avg_departure_distance}
+                        </span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-base font-medium">
+                        Avg Arrival Distance:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.avg_arrival_distance}
+                        </span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-base font-medium">
+                        Cancelled Departures:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.cancelled_departures}
+                        </span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-base font-medium">
+                        Cancelled Arrivals:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.cancelled_arrivals}
+                        </span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-base font-medium">
+                        Avg Delay Departures:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.avg_delay_departures}
+                        </span>
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-base font-medium">
+                        Avg Delay Arrivals:{" "}
+                        <span className="border-b-2 border-black">
+                          {airportData.avg_delay_arrivals}
+                        </span>
+                      </span>
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <h2 className="mt-2 font-medium text-md">Top Destinations</h2>
+                        <ul>
+                          {Object.entries(airportData.top_destinations).map(
+                            ([destination, count]) => (
+                              <li key={destination}>
+                                {destination}: {count}
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      </div>
+                      <div>
+                        <h2 className="mt-2 font-medium text-md">Top Airlines</h2>
+                        <ul>
+                          {Object.entries(airportData.top_airlines).map(([airline, count]) => (
+                            <li key={airline}>
+                              {airline}: {count}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>        
+                ))
+              : null}
+          </section>
+
         </div>
       </section>
     </main>
