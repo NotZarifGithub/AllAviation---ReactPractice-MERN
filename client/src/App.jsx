@@ -6,8 +6,8 @@ import Aircraft from "./pages/Aircraft"
 import Airline from "./pages/airline"
 import Airport from "./pages/airport"
 import Helicopter from "./pages/helicopter"
-import FlightTracker from "./pages/FlightTracker"
 import AviationTaxes from "./pages/AviationTaxes"
+import Countries from "./pages/Countries"
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/explore/airline" element={<Airline />}/> 
           <Route path="/explore/airport" element={<Airport />}/> 
           <Route path="/explore/helicopter" element={<Helicopter />}/> 
-          <Route path="/explore/flight-tracker" element={<FlightTracker />}/> 
+          <Route path="/explore/countries-alphacode" element={<Countries />}/> 
           <Route path="/explore/aviation-taxes" element={<AviationTaxes />}/> 
         </Routes>
       </BrowserRouter>

@@ -32,10 +32,10 @@ const Explore = () => {
       path: '/explore/helicopter',
     },
     {
-      title: 'Real-Time Flight Tracker',
-      desc: "Explore live updates on aircraft, including real-time operations which providing a comprehensive view of the aviation world.",
+      title: 'Countries AlphaCode',
+      desc: "Explore all the alpha2code and alpha3code for specified countries",
       logo: <GiCommercialAirplane />,
-      path: '/explore/flight-tracker',
+      path: '/explore/countries-alphacode',
     },
     {
       title: 'Aviation Taxes',

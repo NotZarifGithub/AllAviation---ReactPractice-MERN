@@ -78,7 +78,7 @@ const airportStatistics = async (req, res, next) => {
     const {icao} = req.query
     const response = await axios.get("https://flightera-flight-data.p.rapidapi.com/airport/statistics", {
       params:{
-        icao: "wmkk"
+        icao: icao
       },
       headers: {
         'X-RapidAPI-Key': 'e2deeac767mshfbc47f57dfcdfa3p151255jsn532d014773b0',
@@ -86,7 +86,6 @@ const airportStatistics = async (req, res, next) => {
       }
     })
     res.status(200).json(response.data)
-
   } catch (error) {
     next(error)
     
