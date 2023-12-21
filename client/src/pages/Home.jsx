@@ -15,7 +15,7 @@ const Home = () => {
             <h1 className="text-3xl font-bold tracking-[3px] leading-[40px] md:text-4xl lg:text-5xl lg:leading-[70px]">
               Explore the Skies with AllAviation
             </h1>
-            <div className="w-full flex justify-center">
+            <div className="flex justify-center w-full">
               <p className="text-sm font-medium leading-6">
               Welcome to AllAviation! Whether youre a seasoned pilot, aspiring aviator, or simply fascinated by flight, our platform is your ultimate go-to for comprehensive insights into the world of aviation.
               </p>
@@ -23,51 +23,51 @@ const Home = () => {
           </div>
           
           <div className="flex flex-col gap-4 md:grid md:grid-cols-2 ">
-            <div className="flex gap-3 items-start">
+            <div className="flex items-start gap-3">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
-              <p className="font-semibold text-xs leading-5">
+              <p className="text-xs font-semibold leading-5">
                 Dive into detailed resources on aircraft models, airline operations, and airport facilities.
               </p>
             </div>
-            <div className="flex gap-3 items-start">
+            <div className="flex items-start gap-3">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
-              <p className="font-semibold text-xs leading-5">
+              <p className="text-xs font-semibold leading-5">
                 Join a vibrant community of aviation enthusiasts, pilots, and industry experts.
               </p>
             </div>
-            <div className="flex gap-3 items-start">
+            <div className="flex items-start gap-3">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
-              <p className="font-semibold text-xs leading-5">
+              <p className="text-xs font-semibold leading-5">
                 Get real-time updates on the latest aviation developments.
               </p>
             </div>
-            <div className="flex gap-3 items-start">
+            <div className="flex items-start gap-3">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
-              <p className="font-semibold text-xs leading-5">
+              <p className="text-xs font-semibold leading-5">
                 Explore tailored content based on your interests, whether its aircraft engineering or airline management.
               </p>
             </div>
-            <div className="flex gap-3 items-start">
+            <div className="flex items-start gap-3">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
-              <p className="font-semibold text-xs leading-5">
+              <p className="text-xs font-semibold leading-5">
                 Our platform streamlines your aviation journey with automation and insightful reporting tools.
               </p>
             </div>
-            <div className="flex gap-3 items-start">
+            <div className="flex items-start gap-3">
               <div className="text-[#34b233] pt-[2px] text-2xl">
                 <CiCircleCheck />
               </div>
-              <p className="font-semibold text-xs leading-5">
+              <p className="text-xs font-semibold leading-5">
                 Embrace best practices with standardized information and reliable resources for a seamless exploration.
               </p>
             </div>

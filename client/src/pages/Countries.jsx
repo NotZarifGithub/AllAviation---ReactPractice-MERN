@@ -15,7 +15,7 @@ const Countries = () => {
     console.log(countrySearchFormData)
   }
   
-  const handleSubmitCountrySearch = async (e) => {
+    const handleSubmitCountrySearch = async (e) => {
     e.preventDefault()
     try {
       const countrySearchData = await axios.get("/api/country/country-search", {
