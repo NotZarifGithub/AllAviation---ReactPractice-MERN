@@ -6,7 +6,7 @@ const Home = () => {
     <main>
 
       {/* hero section */}
-      <section className="md:gap-20 flex px-[40px] max-w-[1200px] mx-auto lg:flex-row flex-col md:px-[20px] py-[20px]">
+      <section className="md:gap-14 flex px-[40px] max-w-[1200px] mx-auto lg:flex-row flex-col md:px-[20px] py-[20px]">
 
         {/* website information */}
         <section className="flex flex-col gap-10 py-[30px] lg:flex-1">
@@ -68,24 +68,22 @@ const Home = () => {
                 <CiCircleCheck />
               </div>
               <p className="text-xs font-semibold leading-5">
-                Embrace best practices with standardized information and reliable resources for a seamless exploration.
+                 Embrace best practices with standardized information and reliable resources for a seamless exploration.
               </p>
-            </div>
+           </div>
           </div>
 
-          <div className="flex justify-center md:justify-start py-[20px]">
-            <button className="border-2 rounded-lg border-black text-lg w-[200px] py-[5px]">
-              <Link to={'/explore'}>
-                Explore
-              </Link>
-            </button>
-          </div>
+          <button className="flex justify-center md:justify-start py-[20px]">
+            <Link to={'/explore'} className="border-2 rounded-lg border-black text-lg w-[200px] py-[5px]">
+              Explore
+            </Link>
+          </button>
         </section>
 
         {/* hero image */}
-        <section className="flex items-center justify-center lg:flex-1">
+        <section className="pb-[100px] flex items-center justify-center lg:flex-1">
           <div className="border shadow-md rounded-xl">
-            <img src="https://firebasestorage.googleapis.com/v0/b/devstash-aaee7.appspot.com/o/allAviation.jpg?alt=media&token=1538edaa-7f69-4905-9f3b-200c8c0aa803" alt="" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/devstash-aaee7.appspot.com/o/allAviation.jpg?alt=media&token=e73a3a3a-1757-4033-8403-be3851f6e7da" alt="" />
           </div>
         </section>
       </section>

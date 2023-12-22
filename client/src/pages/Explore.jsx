@@ -50,6 +50,15 @@ const Explore = () => {
 
       {/* categories */}
       <section className="flex px-[20px] max-w-[1200px] mx-auto flex-col gap-5">
+        <div className="py-10 ">
+          <h1 className="mb-4 text-4xl font-bold">Explore the World of Aviation</h1>
+          <p className="font-medium">
+            Welcome to our comprehensive aviation hub where you can delve into a vast array of information about aircraft, airlines, airports, etc. Whether youre a passionate aviation enthusiast, a student studying aviation, or someone fascinated by the intricacies of the aviation industry, this is the place to satisfy your curiosity.
+          </p>
+          <p className="mt-4 font-medium">
+            Navigate through the categories below and uncover detailed insights, from engineering specifics to operational strategies, and gain a deeper understanding of the fascinating world of aviation.
+          </p>
+        </div>
         <h1 className='font-semibold md:text-xl lg:text-2xl'>
           Categories
         </h1>
