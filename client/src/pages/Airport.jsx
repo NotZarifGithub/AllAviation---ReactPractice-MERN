@@ -63,7 +63,7 @@ const Airport = () => {
       ...airportMetarFormData,
       [e.target.id]: e.target.value,
     });
-    console.log(airportMetarFormData);
+    console.log(airportMetarFormData.icao);
   };
 
   const handleSubmitAirportMetar = async (e) => {
@@ -79,7 +79,7 @@ const Airport = () => {
       console.error(error);
     }
   };
-
+  
   const handleChangeAirportStatistics = (e) => {
     setAirportStatisticsFormData({
       ...airportStatisticsFormData,
@@ -105,7 +105,7 @@ const Airport = () => {
   console.log(airportMetarData);
 
   return (
-    <main className="flex flex-col gap-10">
+    <main className="flex flex-col gap-10 py-[50px]">
       {/* Airport Search */}
       <section className="flex px-[20px] max-w-[1200px] mx-auto py-[20px] flex-col gap-8 w-full">
         {/* title and description */}
@@ -121,8 +121,11 @@ const Airport = () => {
           <div className="flex-1">
             <FormCard
               mainTitle={"Enter airport details"}
-              title={"Country Code"}
+              title={"Alpha-2 Country Code"}
               titleForm={"country"}
+              context={true}
+              contextText={"Can't find your Alpha-2 Country Code?"}
+              link={'/explore/countries-alphacode'}
               handleChange={handleChangeAirportSearch}
               handleSubmit={handleSubmitAirportSearch}
             />
@@ -138,7 +141,7 @@ const Airport = () => {
                   <div key={index}>
                     <p>
                       <span className="text-base font-medium">
-                        ICAO Code:{" "}
+                        IATA Code:{" "}
                         <span className="border-b-2 border-black">
                           {item.ident}
                         </span>
@@ -169,6 +172,9 @@ const Airport = () => {
               mainTitle={"Enter airport details"}
               title={"Airport ICAO Code"}
               titleForm={"icao"}
+              context={true}
+              contextText={"Can't find your Airport ICAO code?"}
+              link={'https://en.wikipedia.org/wiki/ICAO_airport_code'}
               handleChange={handleChangeAirportInfo}
               handleSubmit={handleSubmitAirportInfo}
             />

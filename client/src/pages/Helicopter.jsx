@@ -18,10 +18,10 @@ const Helicopter = () => {
     e.preventDefault()
 
     try {
-      const helicopterTypeData = await axios.get('/api/helicopter/get-helicopter', { 
+      const helicopterTypeData = await axios.get('/api/helicopter/helicopter-search', { 
       params: {
-        manufacturer: formData.helicopterManufacturer, 
-        model: formData.helicopterModel
+        manufacturer: formData.manufacturer, 
+        model: formData.model
       }
     })
     setHelicopterTypeData(helicopterTypeData.data)
@@ -47,22 +47,22 @@ const Helicopter = () => {
             </h1>
             <form 
               action=""
-              className="flex flex-col gap-6 w-full"
+              className="flex flex-col w-full gap-6"
               onSubmit={handleSubmit}
             >
 
               {/* manufacturer input */}
               <div className="flex flex-col gap-2">
                 <label 
-                  htmlFor="helicopterManufacturer"
-                  className=" text-sm font-medium"
+                  htmlFor="manufacturer"
+                  className="text-sm font-medium "
                 >
                   Helicopter manufacturer
                 </label>
                 <input
                 type="text"
-                id="helicopterManufacturer" 
-                name="helicopterManufacturer"
+                id="manufacturer" 
+                name="manufacturer"
                 className="border rounded-lg py-[5px] px-[15px] w-full text-sm"
                 onChange={handleChange}
                 />
@@ -71,15 +71,15 @@ const Helicopter = () => {
               {/* model input */}
               <div className="flex flex-col gap-2">
                 <label 
-                  htmlFor="helicopterModel"
-                  className=" text-sm font-medium"
+                  htmlFor="model"
+                  className="text-sm font-medium "
                 >
                   Helicopter model
                 </label>
                 <input
                 type="text"
-                id="helicopterModel" 
-                name="helicopterModel"
+                id="model" 
+                name="model1"
                 className="border rounded-lg py-[5px] px-[15px] w-full text-sm"
                 onChange={handleChange}
                 />
@@ -99,74 +99,74 @@ const Helicopter = () => {
 
         {/* output */}
         <section className="flex-1 flex flex-col gap-4 py-[20px]">
-          <h1 className="font-medium text-lg">
+          <h1 className="text-lg font-medium">
             Details
           </h1>
 
           {helicopterTypeData.length > 0 && (
-            <div className="flex flex-col text-sm gap-3 fo">
+            <div className="flex flex-col gap-3 text-sm fo">
               <div>
-                Manufacturer = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].manufacturer}</span>
+                Manufacturer = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].manufacturer}</span>
               </div>
 
               <div>
-                Model = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].model}</span>
+                Model = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].model}</span>
               </div>
 
               <div>
-                Max Speed (Sea Level) = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].max_speed_sl_knots} Knots</span>
+                Max Speed (Sea Level) = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].max_speed_sl_knots} Knots</span>
               </div>
 
               <div>
-                Cruise Speed (Sea Level) = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].cruise_speed_sl_knots} Knots</span>
+                Cruise Speed (Sea Level) = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].cruise_speed_sl_knots} Knots</span>
               </div>
 
               <div>
-                Range = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].range_nautical_miles} Nautical Miles</span>
+                Range = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].range_nautical_miles} Nautical Miles</span>
               </div>
 
               <div>
-                Cruise Time = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].cruise_time_min} Minutes</span>
+                Cruise Time = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].cruise_time_min} Minutes</span>
               </div>
 
               <div>
-                Fuel Capacity = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].fuel_capacity_gallons} Gallons</span>
+                Fuel Capacity = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].fuel_capacity_gallons} Gallons</span>
               </div>
 
               <div>
-                Gross External Load = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].gross_external_load_lbs} lbs</span>
+                Gross External Load = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].gross_external_load_lbs} lbs</span>
               </div>
 
               <div>
-                External Load Limit = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].external_load_limit_lbs} lbs</span>
+                External Load Limit = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].external_load_limit_lbs} lbs</span>
               </div>
 
               <div>
-                Main Rotor Diameter = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].main_rotor_diameter_ft} ft</span>
+                Main Rotor Diameter = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].main_rotor_diameter_ft} ft</span>
               </div>
 
               <div>
-                Number of Blades = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].num_blades}</span>
+                Number of Blades = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].num_blades}</span>
               </div>
 
               <div>
-                Blade Material = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].blade_material}</span>
+                Blade Material = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].blade_material}</span>
               </div>
 
               <div>
-                Rotor Type = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].rotor_type}</span>
+                Rotor Type = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].rotor_type}</span>
               </div>
 
               <div>
-                Storage Width = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].storage_width_ft} ft</span>
+                Storage Width = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].storage_width_ft} ft</span>
               </div>
 
               <div>
-                Length = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].length_ft} ft</span>
+                Length = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].length_ft} ft</span>
               </div>
 
               <div>
-                Height = <span className="font-medium text-base border-b-2 border-black">{helicopterTypeData[0].height_ft} ft</span>
+                Height = <span className="text-base font-medium border-b-2 border-black">{helicopterTypeData[0].height_ft} ft</span>
               </div>
             </div>
           )}

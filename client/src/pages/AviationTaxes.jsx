@@ -32,7 +32,7 @@ const Countries = () => {
   console.log(aviationTaxData)
   
   return (
-    <main className="flex flex-col gap-10">
+    <main className="flex flex-col gap-10 py-[50px]">
 
       {/* Aviation Taxes */}
       
@@ -67,7 +67,7 @@ const Countries = () => {
               <ul>
                 {aviationTaxData.data.map((tax, index) => (
                   <li key={tax.id}>
-                    {index + 1}. {tax.tax_name} ({tax.iata_code})
+                    {index + 1}. {tax.tax_name}
                   </li>
                 ))}
               </ul>

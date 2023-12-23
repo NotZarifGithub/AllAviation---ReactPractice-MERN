@@ -33,7 +33,7 @@ const Countries = () => {
   console.log(countrySearchData)
   
   return (
-    <main className="flex flex-col gap-10">
+    <main className="flex flex-col gap-10 py-[50px]">
 
       {/* Aircraft Search */}
       

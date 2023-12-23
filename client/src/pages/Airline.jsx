@@ -124,7 +124,7 @@ const Airline = () => {
   console.log(airlineStatisticsData)
 
   return (
-    <main className="flex flex-col gap-10">
+    <main className="flex flex-col gap-10 py-[50px]">
 
       {/* Airline Search */}
       
@@ -137,7 +137,7 @@ const Airline = () => {
           description={"Provides a list of airlines associated with a specified airline ICAO code."}
         />
 
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col gap-5 md:flex-row">
 
           {/* form */}
         
@@ -154,34 +154,34 @@ const Airline = () => {
           {/* output */}
 
           <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
-            <h1 className="font-medium text-lg">Details</h1>
+            <h1 className="text-lg font-medium">Details</h1>
 
             {airlineSearchData.length > 0 && (
-              <div className="grid md:grid-cols-2 text-sm gap-2">
+              <div className="grid gap-2 text-sm md:grid-cols-2">
                 {airlineSearchData.map((item, index) => (
                   <div key={index}>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Identification: <span className="border-b-2 border-black">{item.ident}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         ICAO Code: <span className="border-b-2 border-black">{item.icao}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         IATA Code: <span className="border-b-2 border-black">{item.iata}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Airline Name: <span className="border-b-2 border-black">{item.name}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Country: <span className="border-b-2 border-black">{item.country}</span>
                       </span>
                     </p>
@@ -206,7 +206,7 @@ const Airline = () => {
           description={"Provide a list of 15 aircraft registration numbers for a particular airline."}
         />
 
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col gap-5 md:flex-row">
 
           {/* form */}
 
@@ -223,10 +223,10 @@ const Airline = () => {
           {/* output */}
 
           <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
-            <h1 className="font-medium text-lg">Details</h1>
+            <h1 className="text-lg font-medium">Details</h1>
 
             {airlineAircraftData.length > 0 && (
-              <div className="grid lg:grid-cols-3 text-sm gap-2 md:grid-cols-2">
+              <div className="grid gap-2 text-sm lg:grid-cols-3 md:grid-cols-2">
                 {airlineAircraftData
                 .filter((item, index) => index < 15)
                 .map((item, index) => (
@@ -252,7 +252,7 @@ const Airline = () => {
           description={"Provides in-depth statistical information for airlines based on their ICAO code."}
         />
 
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col gap-5 md:flex-row">
 
           {/* form */}
 
@@ -269,46 +269,46 @@ const Airline = () => {
           {/* output */}
 
           <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
-            <h1 className="font-medium text-lg">
+            <h1 className="text-lg font-medium">
               Details
             </h1>
 
             {airlineStatisticsData.length > 0 && (
-              <div className="grid md:grid-cols-2 text-sm gap-2">
+              <div className="grid gap-2 text-sm md:grid-cols-2">
                 {airlineStatisticsData.map((item, index) => (
                   <div key={index}>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Identification: <span className="border-b-2 border-black">{item.ident}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Total Flight in 1 Month: <span className="border-b-2 border-black">{item.flights_30_days}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Total Flight in 1 Week: <span className="border-b-2 border-black">{item.flights_7_days}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Oldest Aircraft Age: <span className="border-b-2 border-black">{item.oldest_plane_age}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Newest Aircraft Age: <span className="border-b-2 border-black">{item.newest_plane_age}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Top Airports in 1 Month: <span className="border-b-2 border-black">{Object.keys(item.top_airports_30_days).join(', ')}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Top Countries in 1 Month: <span className="border-b-2 border-black">{Object.keys(item.top_countries_30_days).join(', ')}</span>
                       </span>
                     </p>
@@ -331,7 +331,7 @@ const Airline = () => {
           description={"Provides detailed information about airlines identified by their ICAO codes."}
         />
 
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col gap-5 md:flex-row">
 
           {/* form */}
 
@@ -348,61 +348,61 @@ const Airline = () => {
           {/* output */}
 
           <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
-            <h1 className="font-medium text-lg">
+            <h1 className="text-lg font-medium">
               Details
             </h1>
 
             {airlineInfoData.length > 0 && (
-              <div className="grid md:grid-cols-2 text-sm gap-2">
+              <div className="grid gap-2 text-sm md:grid-cols-2">
                 {airlineInfoData.map((item, index) => (
                   <div key={index}>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Identification: <span className="border-b-2 border-black">{item.ident}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         ICAO Code: <span className="border-b-2 border-black">{item.icao}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         IATA Code: <span className="border-b-2 border-black">{item.iata}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Airline Name: <span className="border-b-2 border-black">{item.name}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Callsign: <span className="border-b-2 border-black">{item.callsign}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Country: <span className="border-b-2 border-black">{item.country}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Founding Date: <span className="border-b-2 border-black">{item.founding_date}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Start Date: <span className="border-b-2 border-black">{item.start_date}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Website: <span className="border-b-2 border-black">{item.website}</span>
                       </span>
                     </p>
                     <p>
-                      <span className="font-medium text-base">
+                      <span className="text-base font-medium">
                         Alliance: <span className="border-b-2 border-black">{item.alliance}</span>
                       </span>
                     </p>

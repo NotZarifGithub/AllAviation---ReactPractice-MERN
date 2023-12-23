@@ -28,7 +28,7 @@ const aircraftSearch = async (req, res, next) => {
         model: model
       },
       headers: {
-        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY,
+        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY4,
         'X-RapidAPI-Host': 'flightera-flight-data.p.rapidapi.com'
       }
     })
@@ -49,7 +49,7 @@ const aircraftInfo = async (req, res, next) => {
         reg: `${registration}`
       },
       headers: {
-        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY,
+        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY3,
         'X-RapidAPI-Host': 'flightera-flight-data.p.rapidapi.com'
       }
     })

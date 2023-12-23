@@ -60,9 +60,10 @@ const Aircraft = () => {
       console.error(error)
     }
   }
+  console.log(aircraftInfoData)
 
   return (
-    <main className="flex flex-col gap-10">
+    <main className="flex flex-col gap-10 py-[50px]">
 
       {/* Aircraft Search */}
       
@@ -75,15 +76,18 @@ const Aircraft = () => {
           description={"Provide a list of 10 aircraft registration numbers for a particular model."}
         />
 
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col gap-5 md:flex-row">
 
           {/* form */}
         
           <div className="flex-1">
             <FormCard
               mainTitle={"Enter aircraft details"}
-              title={"Aircraft Model"}
+              title={"Aircraft Model ICAO code"}
               titleForm={"model"}
+              context={true}
+              contextText={"Can't find your aircraft's model?"}
+              link={'https://www.avcodes.co.uk/acrtypes.asp'}
               handleChange={handleChangeAircraftSearch}
               handleSubmit={handleSubmitAircraftSearch}
             />
@@ -92,14 +96,14 @@ const Aircraft = () => {
           {/* output */}
 
           <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
-            <h1 className="font-medium text-lg">Details</h1>
+            <h1 className="text-lg font-medium">Details</h1>
 
             {aircraftSearchData.length > 0 && (
-              <div className="grid md:grid-cols-2 text-sm gap-2">
+              <div className="grid gap-2 text-sm md:grid-cols-2">
                 {aircraftSearchData.map((data, index) => (
                   <div key={index}>
                     Aircraft {index + 1} ={" "}
-                    <span className="font-medium text-base border-b-2 border-black">
+                    <span className="text-base font-medium border-b-2 border-black">
                       {data}
                     </span>
                   </div>
@@ -121,7 +125,7 @@ const Aircraft = () => {
           description={"Provides in-depth details about an aircraft identified by its registration."}
         />
 
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col gap-5 md:flex-row">
 
           {/* form */}
 
@@ -129,6 +133,8 @@ const Aircraft = () => {
             <FormCard
               title={"Aircraft Registration"}
               titleForm={"registration"}
+              context={true}
+              contextText={"Get your Aircraft Registration in Aircraft Search"}
               handleChange={handlechangeAircraftInfo}
               handleSubmit={handleSubmitAircraftInfo}
             />
@@ -137,19 +143,15 @@ const Aircraft = () => {
           {/* output */}
 
           <section className="flex-1 flex flex-col gap-4 max-h-[200px]">
-            <h1 className="font-medium text-lg">Details</h1>
-
-            {aircraftInfoData.length > 0 && (
-              <div className="grid md:grid-cols-2 text-sm gap-2">
-                {aircraftInfoData.map((data, index) => (
+            <h1 className="text-lg font-medium">Details</h1>
+            {Object.keys(aircraftInfoData).length > 0 && (
+              <div className="grid gap-2 text-sm md:grid-cols-2">
+                {Object.entries(aircraftInfoData).map(([key, value], index) => (
                   <div key={index}>
-                    hello
-                    <div key={index}>
-                    Aircraft {index + 1} ={" "}
-                    <span className="font-medium text-base border-b-2 border-black">
-                      {data}
+                    Aircraft {key} ={" "}
+                    <span className="text-base font-medium border-b-2 border-black">
+                      {typeof value === 'object' ? JSON.stringify(value) : value}
                     </span>
-                  </div>
                   </div>
                 ))}
               </div>

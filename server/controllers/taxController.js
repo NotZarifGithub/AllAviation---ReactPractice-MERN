@@ -7,7 +7,7 @@ const aviationTax = async (req, res, next) => {
     const response = await axios.post(
       "https://flight-tracker-radar.p.rapidapi.com/FlightsAviationTaxes",
       {
-        limit: 30,
+        limit: 20,
         offset: 0,
         search: search
       },

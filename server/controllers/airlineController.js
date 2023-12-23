@@ -45,7 +45,7 @@ const airlineAircraft = async (req, res, next) => {
         ident: ident
       },
       headers: {
-        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY,
+        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY3,
         'X-RapidAPI-Host': 'flightera-flight-data.p.rapidapi.com'
       }
     })
@@ -85,7 +85,7 @@ const airlineInfo = async (req, res, next) => {
         icao: icao
       },
       headers: {
-        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY,
+        'X-RapidAPI-Key': process.env.XRAPIDAPIKEY3,
         'X-RapidAPI-Host': 'flightera-flight-data.p.rapidapi.com'
       }
     })
