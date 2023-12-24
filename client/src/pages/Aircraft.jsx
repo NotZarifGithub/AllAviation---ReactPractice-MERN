@@ -24,7 +24,7 @@ const Aircraft = () => {
     e.preventDefault();
 
     try {
-      const aircraftSearchData = await axios.get('https://allaviation.onrender.com/api/quote/get-all-quotes/api/aircraft/aircraft-search', {
+      const aircraftSearchData = await axios.get('https://allaviation.onrender.com/api/aircraft/aircraft-search', {
         params: {
           model: formDataAircraftSearch.model,
         },
