@@ -25,7 +25,7 @@ const Airport = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get("/api/airport/airport-search", {
+      const response = await axios.get("https://allaviation.onrender.com/api/airport/airport-search", {
         params: {
           country: airportSearchFormData.country,
         },
@@ -47,7 +47,7 @@ const Airport = () => {
   const handleSubmitAirportInfo = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get("/api/airport/airport-info", {
+      const response = await axios.get("https://allaviation.onrender.com/api/airport/airport-info", {
         params: {
           icao: airportInfoFormData.icao,
         },
@@ -69,7 +69,7 @@ const Airport = () => {
   const handleSubmitAirportMetar = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get("/api/airport/airport-metar", {
+      const response = await axios.get("https://allaviation.onrender.com/api/airport/airport-metar", {
         params: {
           ident: airportMetarFormData.icao,
         },
@@ -91,7 +91,7 @@ const Airport = () => {
   const handleSubmitAirportStatistics = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get("/api/airport/airport-statistics", {
+      const response = await axios.get("https://allaviation.onrender.com/api/airport/airport-statistics", {
         params: {
           icao: airportStatisticsFormData.icao,
         },

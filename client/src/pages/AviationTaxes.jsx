@@ -19,7 +19,7 @@ const Countries = () => {
     const handleSubmitAviationTax = async (e) => {
     e.preventDefault()
     try {
-      const aviationTaxData = await axios.post("/api/tax/aviation-tax", {
+      const aviationTaxData = await axios.post("https://allaviation.onrender.com/api/tax/aviation-tax", {
         search: aviationTaxFormData.search
       })
       setAviationTaxData(aviationTaxData.data)

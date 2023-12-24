@@ -29,7 +29,7 @@ const Airline = () => {
     e.preventDefault()
 
     try {
-      const airlineSearchData = await axios.get('/api/airline/airline-search', { 
+      const airlineSearchData = await axios.get('https://allaviation.onrender.com/api/airline/airline-search', { 
       params: {
         icao: formDataAirlineSearch.icao
       }
@@ -56,7 +56,7 @@ const Airline = () => {
     e.preventDefault()
 
     try {
-      const airlineAircraftData = await axios.get("/api/airline/airline-aircraft", {
+      const airlineAircraftData = await axios.get("https://allaviation.onrender.com/api/airline/airline-aircraft", {
         params: {
           ident: formDataAirlineAircraft.ident
         }
@@ -82,7 +82,7 @@ const Airline = () => {
     e.preventDefault()
 
     try {
-      const airlineStatisticsData = await axios.get("/api/airline/airline-statistics", {
+      const airlineStatisticsData = await axios.get("https://allaviation.onrender.com/api/airline/airline-statistics", {
         params: {
           icao: formDataAircraftStatistics.icao
         }
@@ -109,7 +109,7 @@ const Airline = () => {
       e.preventDefault()
   
       try {
-        const airlineInfoData = await axios.get("/api/airline/airline-info", {
+        const airlineInfoData = await axios.get("https://allaviation.onrender.com/api/airline/airline-info", {
           params: {
             icao: formDataAirlineInfo.icao
           }

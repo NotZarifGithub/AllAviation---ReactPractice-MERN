@@ -18,7 +18,7 @@ const Countries = () => {
     const handleSubmitCountrySearch = async (e) => {
     e.preventDefault()
     try {
-      const countrySearchData = await axios.get("/api/country/country-search", {
+      const countrySearchData = await axios.get("https://allaviation.onrender.com/api/country/country-search", {
         params: {
           name: countrySearchFormData.country
         }

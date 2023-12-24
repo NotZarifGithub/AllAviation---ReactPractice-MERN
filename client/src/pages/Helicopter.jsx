@@ -18,7 +18,7 @@ const Helicopter = () => {
     e.preventDefault()
 
     try {
-      const helicopterTypeData = await axios.get('/api/helicopter/helicopter-search', { 
+      const helicopterTypeData = await axios.get('https://allaviation.onrender.com/api/helicopter/helicopter-search', { 
       params: {
         manufacturer: formData.manufacturer, 
         model: formData.model
